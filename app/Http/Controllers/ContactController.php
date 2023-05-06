@@ -25,7 +25,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => '',
             'email' => 'required|email',
             'phone' => 'required|digits:11|numeric',
             'subject' => 'required',
@@ -35,6 +35,6 @@ class ContactController extends Controller
         Contact::create($request->all());
   
         return redirect()->back()
-                         ->with(['success' => 'Thank you for contact us. we will contact you shortly.']);
+                         ->with(['success' => 'Thank you for contacting us. We will in touch shortly :)']);
     }
 }

@@ -261,7 +261,7 @@
                                     <div class="row mt-2 mb-5">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <strong class="ms-3">Name:</strong>
+                                                <strong class="ms-3">Name: (Optional)</strong>
                                                 <input type="text" name="name" class="form-control" placeholder="Please Enter Your Name" value="{{ old('name') }}">
                                                 @if ($errors->has('name'))
                                                     <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -322,9 +322,9 @@
         </div>
 
        <!-- Footer -->
-       <div id="footer" class="container-fluid pt-5 text-center ">
+        <div id="footer" class="container-fluid pt-5 text-center ">
             <div class="pb-5"><img id="pic_logo" src="{{asset('/img/pic_logo.png')}}" alt="some"></div>
-            <p class="fs-5 text-light-emphasis">
+            <p class="fs-5 ">
                 Don’t be afraid to let go of your emotions
             </p>
             <p class="fs-6 text-light-emphasis">
@@ -334,7 +334,12 @@
                 <img src="{{asset('/img/fb.png')}}" alt="">
                 <img src="{{asset('/img/twit.png')}}" alt="">
                 <img src="{{asset('/img/instagram.png')}}" style="width: 48px; height: 48px;"  alt="">
+
+                <p class="mb-4 mt-4">
+                    © 2023 Uplift, Inc. All Rights Reserved
+                </p>
             </div>
-        </div>     
+            
+        </div>        
 </body>
 </html>
