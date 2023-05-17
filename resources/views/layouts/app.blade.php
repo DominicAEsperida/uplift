@@ -19,12 +19,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 
 </head>
 <body>
     <div id="app">
         <!-- Hero -->
-        <div class="hero vh-100 position-relative" style="overflow:hidden ">
+        <div class="hero vh-100 position-relative px-5 " style="overflow:hidden ">
             
             <nav class="navbar navbar-expand-md ">
                 <div class="container-fluid" >
@@ -246,13 +247,14 @@
               <div class="container-fluid " >
                 <div class="row">
                         <div id="home_btn" class="col">
-                        <a href="/contact-us"><button id="btn_effect" class="buttons pe-5 ps-5 pt-2 pb-2 rounded-pill ">Talk to Us</button></a>
+                        <a href="/contact-us"><button id="btn_effect" class="buttons pe-5 ps-5 pt-2 pb-2 rounded-pill shadow">TALK TO US</button></a>
                             
                         </div>
                         
                         <div class="col">
-                            <p id="home_text" class="fs-5 mt-auto mb-auto ms-5 px-5 ">
-                                Welcome to Uplift, the revolutionary website application designed to provide invaluable support to individuals struggling with mental health issues. 
+                            <p id="home-text-header" class="fw-bold text-uppercase text-center"> Welcome to Uplift</p>
+                            <p id="home_text" class="fs-5 my-auto mx-3 px-5 ">
+                                the revolutionary website application designed to provide invaluable support to individuals struggling with mental health issues. 
                                 With Uplift, users can connect with qualified experts, educate themselves on healthy coping strategies, and access helpful resources - all in a safe, anonymous space. 
                                 Our mission is to reduce the stigma associated with mental health and to empower individuals to take control of their own mental health and well-being. 
                                 No one should have to go through their mental health journey alone, so we are here to provide support, resources, and a sense of community. 
@@ -286,15 +288,15 @@
 
     <!-- Testimonials -->
     <div class="container-fluid mt-5 ">
-        <h2 class="text-center mb-5 fw-semibold">Testimonials</h2>
+        <h2 class="text-center mb-5 fw-semibold fs-1">TESTIMONIALS</h2>
 
-            <div id="myCarousel" class="carousel slide carousel-dark carousel-fade mb-5">
+            <div id="myCarousel" class="carousel slide carousel-dark  mb-5">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="d-flex justify-content-center mb-4 "><img src="{{asset('/img/testimonial1.jpg')}}" class="d-block t_carousel_img rounded-circle shadow" alt="..."></div>
                         <div class="col-md-6 mx-auto">
-                            <div class="row mx-auto fs-3 d-flex justify-content-center mb-3 text-decoration-underline fw-medium">Luna Lefrey</div>
-                            <div class="row mx-auto testimonial_content ">
+                            <div class="row mx-auto fs-2 d-flex justify-content-center mb-3 text-decoration-underline fw-medium">Luna Lefrey</div>
+                            <div class="row mx-auto fs-5 testimonial_content ">
                                 "I was struggling with depression and anxiety for a long time and wasn't sure where to turn for help. 
                                 I found Uplift and was immediately impressed by the level of care and support they provided. 
                                 I was able to access online counseling services and connect with others who were going through similar issues. 
@@ -308,8 +310,8 @@
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center mb-4"><img src="{{asset('/img/testimonial2.jpg')}}" class="d-block t_carousel_img rounded-circle shadow" alt="..."></div>
                         <div class="col-md-6 mx-auto">
-                            <div class="row mx-auto fs-3 d-flex justify-content-center mb-3 text-decoration-underline fw-medium">DeShaun Marley</div>
-                            <div class="row mx-auto testimonial_content">
+                            <div class="row mx-auto fs-2 d-flex justify-content-center mb-3 text-decoration-underline fw-medium">DeShaun Marley</div>
+                            <div class="row mx-auto fs-5 testimonial_content">
                                 "I cannot express enough gratitude for the life-changing experience I had with Uplift. 
                                 The team was incredibly understanding, empathetic, and provided me with the tools and support I needed to overcome my struggles. 
                                 From the moment I reached out for help, I felt like I was in good hands. 
@@ -325,8 +327,8 @@
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center mb-4"><img src="{{asset('/img/testimonial3.jpg')}}" class="d-block t_carousel_img rounded-circle shadow" alt="..."></div>
                         <div class="col-md-6 mx-auto">
-                            <div class="row mx-auto fs-3 d-flex justify-content-center mb-3 text-decoration-underline fw-medium">Halsey Lee</div>
-                            <div class="row mx-auto testimonial_content">
+                            <div class="row mx-auto fs-2 d-flex justify-content-center mb-3 text-decoration-underline fw-medium">Halsey Lee</div>
+                            <div class="row mx-auto fs-5 testimonial_content">
                             "I was hesitant to seek help for my mental health issues, but I'm so glad I did. The mental wellness service I used was outstanding. 
                             The therapists were incredibly supportive, and they provided a safe and non-judgmental space for me to open up about my struggles. 
                             They gave me practical tools and strategies that I could use in my daily life to manage my anxiety and depression. 
@@ -356,7 +358,7 @@
     <!-- About Us -->
     <div class="container-fluid">
         <div class="col-12 mx-auto abt-us">
-            <h2 class="text-center fw-semibold my-5">About Us</h2>
+            <h2 class="text-center fw-semibold my-5 fs-1">ABOUT US</h2>
             <div class="container-fluid about">
                 <img src="{{asset('/img/pexels-fauxels-3228685.jpg')}}" class="d-block about-img" alt="about us">
                     <div class="center-right me-5 mt-5">
@@ -443,7 +445,7 @@
             </div>
 
             <!-- The Team -->
-                <h1 class="text-center fw-semibold my-5">The Team</h1>
+                <h1 class="text-center fw-semibold my-5 fs-1">THE TEAM</h1>
                 <div class="container px-4 text-center">
                     <div class="row gx-5 th-tm">
                         <div class="col">
@@ -451,6 +453,7 @@
                                 <img src="{{asset('/img/Alden.jpg')}}" class="d-block tt-img rounded-circle shadow" alt="Alden">
                                     <div class="mmb">
                                         <h4 class="fs-4 fw-semibold">Mark Niño Joseph A. Alden</h4>
+                                        <h4 class="fs-6 fw-light">Bachelor of Science in Information Technology</h4>
                                     </div>
                                         <div class="sph">
                                             <p class="fs-5">
@@ -474,6 +477,7 @@
                                 <img src="{{asset('/img/Esperida.jpg')}}" class="d-block tt-img rounded-circle shadow" alt="Esperida">
                                     <div class="mmb">
                                         <h4 class="fs-4 fw-semibold">Emmanuel Dominic A. Esperida</h4>
+                                        <h4 class="fs-6 fw-light">Bachelor of Science in Information Technology</h4>
                                     </div>
                                         <div class="sph">
                                             <p class="fs-5">
@@ -493,6 +497,7 @@
                                 <img src="{{asset('/img/Ferrer.jpg')}}" class="d-block tt-img rounded-circle shadow" alt="Ferrer">
                                     <div class="mmb">
                                         <h4 class="fs-4 fw-semibold">Blademhir U. Ferrer</h4>
+                                        <h4 class="fs-6 fw-light">Bachelor of Science in Information Technology</h4>
                                     </div>
                                         <div class="sph">
                                             <p class="fs-5">
@@ -524,7 +529,7 @@
             <p class="fs-6 text-light-emphasis">
                 You can also find us here
             </p>
-            <div class="pt-3 pb-3 ">
+            <div class="pb-3">
                 <img src="{{asset('/img/fb.png')}}" alt="">
                 <img src="{{asset('/img/twit.png')}}" alt="">
                 <img src="{{asset('/img/instagram.png')}}" style="width: 48px; height: 48px;"  alt="">

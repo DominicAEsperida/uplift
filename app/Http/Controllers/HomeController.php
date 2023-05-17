@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user() == null) {
-            return view('login');
+            return view('home');    
         }
 
         $model = DB::table('threads')->get();

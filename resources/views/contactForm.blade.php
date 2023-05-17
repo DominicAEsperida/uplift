@@ -19,23 +19,24 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 
 </head>
 <body>
-        <div class="hero vh-100 px-5 pt-3">
+        <div class="hero vh-100 px-5 ">
             <nav class="navbar navbar-expand-md">
                 <div class="container-fluid">
                     
                     <!-- Logo -->
                     <a class="navbar-brand ms-5" href="{{ url('/') }}">
-                        <img id="word_logo" src="{{asset('/img/word_logo.png')}}" alt="word_logo" style="height: 50px; width: 100px;">
+                        <img id="word_logo" class="ms-5" src="{{asset('/img/word_logo.png')}}" alt="word_logo" style="height: 50px; width: 100px;">
                     </a>
 
                     <!-- Middle part -->
                     <div class="navbar-nav gap-5 text-uppercase fw-bold mx-auto">
                         <ul class="navbar-nav ms-auto gap-4">
                             <li class="nav-item "><a href="/" class="nav-link {{request()->is('/') ? 'active' : ''}}">Home</a></li>
-                            <li class="nav-item "><a href="/contact-us" class="nav-link {{request()->is('/contact-us') ? 'active' : ''}}">Contact Us</a></li>
+                            <li class="nav-item "><a href="/contact-us" class="nav-link {{request()->is('contact-us') ? 'active' : ''}}">Contact Us</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >
                                     Articles
@@ -240,12 +241,12 @@
             
             <!-- form -->
             <div class="container">
-                <div class="h1 fw-bold text-center mt-5">Talk to Us</div>
-                <div class="h6 text-center mt-2">Just let it all out, we’ll listen to you</div>
+                <div class="fw-bold text-center mt-5 fs-1">TALK TO US</div>
+                <div class="text-center mt-2 fs-5">Just let it all out, we’ll listen to you</div>
                 <div class="row">
 
                     <div class="col-10 offset-1 mt-4">
-                        <div class="card bg-transparent">
+                        <div class="bg-transparent">
                             
                             <div id="contact_card" class="card-body">
         
@@ -311,18 +312,22 @@
                                     </div>
                             
                                     <div class="form-group text-center mt-5">
-                                        <button class="buttons pe-5 ps-5 pt-2 pb-2 rounded-pill ">Submit</button>
+                                        <button class="buttons pe-5 ps-5 pt-2 pb-2 rounded-pill shadow">SUBMIT</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <p class="text-center mt-5 pt-5 fs-5 fst-italic">"...And all will be alright in time..."</p>
+                    <p class="text-center fw-lighter opacity-50">-Ben&Ben</p>
+                </div>
             </div>
         </div>
-
+    
        <!-- Footer -->
-        <div id="footer" class="container-fluid pt-5 text-center ">
+    <div id="footer" class="container-fluid pt-5 text-center ">
             <div class="pb-5"><img id="pic_logo" src="{{asset('/img/pic_logo.png')}}" alt="some"></div>
             <p class="fs-5 ">
                 Don’t be afraid to let go of your emotions
@@ -330,7 +335,7 @@
             <p class="fs-6 text-light-emphasis">
                 You can also find us here
             </p>
-            <div class="pt-3 pb-3 ">
+            <div class="pb-3">
                 <img src="{{asset('/img/fb.png')}}" alt="">
                 <img src="{{asset('/img/twit.png')}}" alt="">
                 <img src="{{asset('/img/instagram.png')}}" style="width: 48px; height: 48px;"  alt="">
@@ -340,6 +345,6 @@
                 </p>
             </div>
             
-        </div>        
+    </div>         
 </body>
 </html>

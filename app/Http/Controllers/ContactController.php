@@ -24,17 +24,27 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $name = request()->input('name');
+
+        if($request->input('name') == null){
+            $name = "Anon";
+        }
         $request->validate([
-            'name' => '',
             'email' => 'required|email',
             'phone' => 'required|digits:11|numeric',
             'subject' => 'required',
             'message' => 'required'
         ]);
   
-        Contact::create($request->all());
+        Contact::create([
+            'name' => $name,
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'subject' => $request->input('subject'),
+            'message' => $request->input('message'),
+        ]);
   
         return redirect()->back()
-                         ->with(['success' => 'Thank you for contacting us. We will in touch shortly :)']);
+                         ->with(['success' => 'Thank you for contacting us. We will be in touch shortly :)']);
     }
 }

@@ -63,15 +63,22 @@ h6 {
 	border-radius: 50%;
 }
 
+#home-text-header{
+	color: #4B7E7E;
+	font-size: 50px;
+}
+
 #home_text {
 	text-indent: 50px;
 	text-align: justify;
 }
 
 .buttons {
-	background-color: #bcead5;
+	background-color: #8EC3B0;
 	color: black;
 	border: 0;
+	text-decoration: none;
+	font-weight:900;
 }
 
 #home_btn {
@@ -183,7 +190,6 @@ h1.heading {
 }
 .card {
 	display: block;
-	margin-bottom: 20px;
 	line-height: 1.42857143;
 	background-color: #c8f2d0;
 	border-radius: 2px;
@@ -203,7 +209,7 @@ h1.heading {
 }
 .img-card img {
 	width: 100%;
-	height: 200px;
+	height: 100%;
 	object-fit: cover;
 	transition: all 0.25s ease;
 }
@@ -224,6 +230,7 @@ h1.heading {
 	border-top: 1px solid #d4d4d4;
 	text-align: center;
 }
+
 .card-read-more a {
 	text-decoration: none !important;
 	padding: 10px;
@@ -232,6 +239,14 @@ h1.heading {
 }
 
 /* for articles */
+
+.articles {
+	height: 1650px;
+}
+
+.card-arti {
+	height: 470px;
+}
 
 .image {
 	width: 100px;
@@ -245,13 +260,63 @@ h1.heading {
 /* for videos */
 
 .vidCards {
-	width: 300px;
+	width: 350px;
+	height: 375px;
 }
-
 .vidcarousel {
-	padding-left: 185px;
+	padding-left: 50px;
 }
 
+.controller-r {
+	padding-left: 13%;
+}
+
+.controller-l {
+	padding-right: 13%;
+}
+/* for vid */
+#border-line{
+	width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+#text-img {
+	height: 550px;
+	width: 550px;
+	border-radius: 5%;
+}
+
+#text-img2 {
+	height: 500px;
+	border-radius: 3%;
+	object-fit: cover;
+	width: 100%;
+}
+.con-text2{
+	position: relative;
+	text-align: center;
+	color: white;
+}
+
+.t-i-text2 {
+	position: absolute;
+	top: 35%;
+	left: 10%;
+	text-shadow: 2px 2px 8px #000000;
+}
+
+.f-text-t {
+	font-size: medium;
+	text-indent: 30px;
+	text-align: justify;
+}
+
+.d-d-text {
+	font-size: medium;
+	text-align: justify;
+}
 /* doms */
 
 .btn-dark-green{
@@ -356,6 +421,7 @@ input[type="text"], [type="email"], [type="password"]{
 .t_carousel_img {
     width: 250px;
     height: 250px;
+	transition: 0.5s;
 }
 
 .testimonial_content {
@@ -486,3 +552,44 @@ input[type="text"], [type="email"], [type="password"]{
 }
 
 /*FERRER*/
+
+/* forums */
+.forum-pic {
+	width: 50px;
+	height: 50px;
+}
+
+#share-btn {
+	width: 35px;
+	height: 35x;
+}
+.forum-card {
+	border-radius: 25px;
+}
+.forum-div {
+	height: auto;
+	height: inherit;
+}
+#ta-dis {
+	background-color: #e9ecef;
+    opacity: 1;
+	border-radius: 25px;
+	border: 1px solid #9ed5c5;
+	padding: 20px;
+}
+
+#ta-dis-n{
+	background-color: #e9ecef;
+    opacity: 1;
+	border-radius: 25px;
+	border: 1px solid #9ed5c5;
+	padding: 20px;
+}
+.button-forum {
+	background-color: transparent;
+	border: none;
+	font-weight: bold;
+}
+#backbtn{
+	text-decoration: none;
+}

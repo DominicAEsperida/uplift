@@ -19,12 +19,13 @@
 		<!-- Styles -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 		<link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 	</head>
 
 	<body>
-		<div class="hero vh-100 px-5 pt-3">
+		<div class="hero forum-div px-5">
 			<nav class="navbar navbar-expand-md">
-				<div class="container-fluid">
+				<div class="container-fluid px-5 ">
 					<!-- Logo -->
 					<a class="navbar-brand ms-5" href="{{ url('/') }}">
 						<img id="word_logo" src="{{ asset('/img/word_logo.png') }}" alt="word_logo" style="height: 50px; width: 100px" />
@@ -48,8 +49,7 @@
 									<hr />
 									<li>
 										<a href="/texts" class="dropdown-item text-center nav-link {{ request()->is('texts') ? 'active' : '' }}"
-											>Tips</a
-										>
+											>Texts</a>
 									</li>
 								</ul>
 							</li>
@@ -322,64 +322,169 @@
 			</nav>
 
 			<!-- forum content -->
-			<div class="container">
-				<div class="card">
+			<div class="container forum-div mt-5">
+				<div class="card forum-card">
 					<div class="card-header">
-						<h2>{{ $content->heading }}</h2>
-						<small
-							>Published by: <b>{{ $author }}</b></small
-						>
+						<div class="row">
+							<div class="col-11">
+								<h2 class="fs-2 fw-bold">{{ $content->heading }}</h2>
+								
+								@if (Auth::user()->name == $author)
+									<small>Published by: <b>You</b></small>
+								@else
+									<small>Published by: <b>{{ $author }}</b></small>
+								@endif
+							</div>
+							<div class="col ms-4 mt-3"><a href="/forums"><img src="{{asset('/img/back.png')}}" style="width=40px; height:40px;"></a></div>
+						</div>
 					</div>
 					<div class="card-body">
-						<p>{{ $content->content }}</p>
+						<form class="mb-3" id="edit-form" method="POST" action="{{ route('edit-content') }}">
+							@csrf
+							<input class="d-none" value="{{ $content->id }}" name="content-id"></input>
+							<textarea
+								disabled
+								name="content"
+								id="textarea-edit"
+								cols="30"
+								rows="6"
+								class="form-control border border-0 bg-transparent"
+								placeholder="What's on your mind?"
+							>{{ $content->content }}</textarea>
+						</form>
+						@if (Auth::user()->name == $author)
+							<form class="me-5 mb-3 text-end"method="POST" action="{{ route('delete-content') }}">
+								<button type="button" id="edit-btn" class="button-forum align-self-end">Edit</button>
+								@csrf
+								<input name="content-id" class="d-none" value="{{ $content->id }}">
+								<button id="delete-btn" type="submit" class="button-forum align-self-end">Delete</button>
+							</form>
+						@endif
+											
 					</div>
 				</div>
+				
 				<hr class="mt-5 mb-3" />
-				<h3>Post a comment</h3>
-				<div class="card">
-					<form method="POST" action="{{ route('post-comment') }}">
-						@csrf
-						<input name="thread_id" type="text" class="d-none" value="{{ $content->id }}" />
-						<div class="card-body d-flex gap-2">
-							<div class="bg-primary p-4 rounded-3 text-white" style="height: max-content">{{ Auth::user()->name[0] }}</div>
-							<div class="w-100">
-								<label for="">{{ Auth::user()->name }}</label>
-								<textarea name="comment" id="" cols="30" rows="3" class="form-control" placeholder="What's on your mind?"></textarea>
-							</div>
-							<div class="mt-4">
-								<button class="btn btn-primary">Post</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				<hr class="mt-5 mb-3" />
-				<h3>Comments</h3>
+				<h3 class="fw-semibold">Comments</h3>
 				@foreach ($comments as $comment)
-				<div class="card mb-3">
+				<div class="card forum-card mb-3">
 					<div class="card-body d-flex gap-2">
-						<div class="bg-primary p-4 rounded-3 text-white" style="height: max-content">{{ $comment["author"][0] }}</div>
+					<div ><img src="{{asset('/img/user.png')}}" class="forum-pic rounded-circle shadow mt-1"></div>
 						<div class="w-100">
-							<label for="">{{ $comment["author"] }}</label>
-							<textarea disabled name="comment" cols="30" rows="3" class="form-control" placeholder="What's on your mind?">{{
-								$comment["comment"]
-							}}</textarea>
+						
+						<label class="mb-2 ps-3 fs-5">{{ $comment["author"] }}</label>
+							@if ($comment["author"] != Auth::user()->name)
+								<textarea id="ta-dis-n" disabled name="comment" cols="30" rows="2" class="form-control" placeholder="What's on your mind?">{{ $comment["comment"] }}</textarea>
+							
+							@elseif ($comment["author"] == Auth::user()->name)
+								<form id="edit-comment" method="POST" action="{{ route('edit-comment') }}">
+									
+									<input name="comment-id" class="d-none" value="{{ $comment['id'] }}">
+									<textarea id="ta-dis" disabled name="comment" cols="30" rows="2" class="form-control" placeholder="What's on your mind?">{{ $comment["comment"] }}</textarea>
+									@csrf
+								</form>
+								<form class="mt-3" method="POST" action="{{ route('delete-comment') }}">
+									<button type="button" id="edit-btn-comment" class="button-forum align-self-end">Edit</button>
+									@csrf
+									<input name="comment-id" class="d-none" value="{{ $comment['id'] }}">
+									<button id="delete-btn-comment" type="submit" class="button-forum align-self-end">Delete</button>
+								</form>
+							@endif
 						</div>
 					</div>
 				</div>
 				@endforeach
+												
+				<hr class="mt-5" />
+				<h3 class="fw-semibold">Post a comment</h3>
+				<div class="card forum-card mb-5">
+					<form method="POST" action="{{ route('post-comment') }}">
+						@csrf
+						<input name="thread_id" type="text" class="d-none" value="{{ $content->id }}" />
+						<div class="card-body d-flex gap-2">
+						<div ><img src="{{asset('/img/user.png')}}" class="forum-pic rounded-circle shadow mt-1"></div>
+							<div class="w-100">
+								<label for="name" class="mb-2 ps-3 fs-5">{{ Auth::user()->name }}</label>
+								<textarea
+									name="comment"
+									id="textarea"
+									cols="30"
+									rows="2"
+									class="form-control"
+									placeholder="What's on your mind?"
+								></textarea>
+							</div>
+							<div class="mt-4 align-self-end">
+								<button class="button-forum pb-4">Post</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
-		</div>
 
-		<!-- Footer -->
-		<div id="footer" class="container-fluid pt-5 text-center video">
-			<div class="pb-5"><img id="pic_logo" src="{{ asset('/img/pic_logo.png') }}" alt="some" /></div>
-			<p class="fs-5 text-light-emphasis">Don’t be afraid to let go of your emotions</p>
-			<p class="fs-6 text-light-emphasis">You can also find us here</p>
-			<div class="pt-3 pb-3">
-				<img src="{{ asset('/img/fb.png') }}" alt="" />
-				<img src="{{ asset('/img/twit.png') }}" alt="" />
-				<img src="{{ asset('/img/instagram.png') }}" style="width: 48px; height: 48px" alt="" />
-			</div>
+			
 		</div>
+		<!-- Footer -->
+		<div id="footer" class="container-fluid pt-5 text-center ">
+				<div class="pb-5"><img id="pic_logo" src="{{asset('/img/pic_logo.png')}}" alt="some"></div>
+				<p class="fs-5 ">
+					Don’t be afraid to let go of your emotions
+				</p>
+				<p class="fs-6 text-light-emphasis">
+					You can also find us here
+				</p>
+				<div class="pb-3">
+					<img src="{{asset('/img/fb.png')}}" alt="">
+					<img src="{{asset('/img/twit.png')}}" alt="">
+					<img src="{{asset('/img/instagram.png')}}" style="width: 48px; height: 48px;"  alt="">
+
+					<p class="mb-4 mt-4">
+						© 2023 Uplift, Inc. All Rights Reserved
+					</p>
+				</div>
+				
+		</div>   
+
+
+		<script>
+			var edit = document.getElementById('edit-btn');
+			var txtarea_edit = document.getElementById('textarea-edit');
+
+			edit.addEventListener("click", function() {
+				txtarea_edit.toggleAttribute('disabled');
+				if (edit.innerHTML === 'Save') {
+					edit.innerHTML = 'Edit';
+				}
+				else {
+					edit.innerHTML = 'Save';
+
+					edit.addEventListener("click", function(){
+						txtarea_edit.removeAttribute('disabled');
+						document.getElementById('edit-form').submit();
+					});
+				}
+			});
+
+			var edit_comment = document.getElementById('edit-btn-comment');
+			var ta_dis_edit = document.getElementById('ta-dis');
+
+			edit_comment.addEventListener("click", function() {
+				ta_dis_edit.toggleAttribute('disabled');
+				if (edit_comment.innerHTML === 'Save') {
+					edit_comment.innerHTML = 'Edit';
+				}
+				else {
+					edit_comment.innerHTML = 'Save';
+
+					edit_comment.addEventListener("click", function(){
+						ta_dis_edit.removeAttribute('disabled');
+						document.getElementById('edit-comment').submit();
+					});
+				}
+			});
+			
+		</script>
+		
 	</body>
+	
 </html>

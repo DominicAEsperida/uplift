@@ -19,15 +19,16 @@
 		<!-- Styles -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 		<link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 	</head>
 
 	<body>
-		<div class="hero vh-100 px-5 pt-3">
+		<div class="hero forum-div px-5 ">
 			<nav class="navbar navbar-expand-md">
 				<div class="container-fluid">
 					<!-- Logo -->
 					<a class="navbar-brand ms-5" href="{{ url('/') }}">
-						<img id="word_logo" src="{{ asset('/img/word_logo.png') }}" alt="word_logo" style="height: 50px; width: 100px" />
+						<img id="word_logo" class="ms-5" src="{{ asset('/img/word_logo.png') }}" alt="word_logo" style="height: 50px; width: 100px" />
 					</a>
 
 					<!-- Middle part -->
@@ -48,7 +49,7 @@
 									<hr />
 									<li>
 										<a href="/texts" class="dropdown-item text-center nav-link {{ request()->is('texts') ? 'active' : '' }}"
-											>Tips</a
+											>Texts</a
 										>
 									</li>
 								</ul>
@@ -321,59 +322,87 @@
 				</div>
 			</nav>
 
-			<!-- tips -->
+			<!-- Posting -->
 			<div class="container">
-				<h1>Share what's on your mind!</h1>
-				<div class="row">
+				<h1 class="fw-semibold my-5 fs-1">Share What's On Your Mind</h1>
+				<div class="row forum-div mb-5">
 					<div class="col-md-12">
-						<div class="card">
+						<div class="card forum-card">
 							<form method="POST" action="{{ route('post-thread') }}">
 								@csrf
 								<div class="card-body d-flex gap-2">
-									<div class="bg-primary p-5 rounded-3 text-white" style="height: max-content">{{ Auth::user()->name[0] }}</div>
+									<div ><img src="{{asset('/img/user.png')}}" class="forum-pic rounded-circle shadow"></div>
 									<div class="w-100">
-										<input name="heading" type="text" class="form-control" placeholder="Enter title" />
+										<label for="name" class="mb-2 ps-2 fs-5">{{ Auth::user()->name }}</label>
+										<input name="heading" type="text" class="form-control mb-2" placeholder="Enter title" />
 										<textarea
 											name="content"
-											id=""
+											id="textarea"
 											cols="30"
 											rows="5"
 											class="form-control"
 											placeholder="What's on your mind?"
 										></textarea>
 									</div>
-									<div>
-										<button class="btn btn-primary">Send</button>
+									<div class="align-self-end">
+										<button class="btn"><img id="share-btn" src="{{asset('/img/share.png')}}"></button>
 									</div>
 								</div>
 							</form>
 						</div>
 					</div>
-					<hr class="mt-5 mb-3" />
+					<hr class="mt-4 mb-3" />
+					<h1 class="fw-semibold ms-2 fs-4">Threads</h1>
 					@foreach ($listOfThreads as $thread)
-					<div class="col-md-12 mt-2">
-						<div class="card">
-							<div class="card-header">{{ $thread->heading }}</div>
-							<div class="card-body">
-								<a role="button" href="{{ route('view-content', ['id' => $thread->id]) }}" class="btn btn-primary">Join In</a>
+					<div class="col-12 mt-3">
+						<div class="card forum-card">
+							<div class="card-header">
+								<div class="row">
+									<div class="col-11">
+										<h2 class="fs-2 fw-bold">{{ $thread->heading }}</h2>
+										
+										@if (Auth::user()->name == $thread->name )
+											<small>Published by: <b>You</b></small>
+										@else
+											<small>Published by: <b>{{ $thread->name  }}</b></small>
+										@endif
+									</div>
+								</div>
 							</div>
+							<div class="card-body my-3">
+								<a href="{{ route('view-content', ['id' => $thread->id]) }}" class="buttons pe-5 ps-5 pt-3 pb-3 rounded-pill shadow">Join In</a>
+							</div>
+							<div class="pb-1"></div>
 						</div>
 					</div>
 					@endforeach
 				</div>
 			</div>
+
+			
 		</div>
 
 		<!-- Footer -->
-		<div id="footer" class="container-fluid pt-5 text-center video">
-			<div class="pb-5"><img id="pic_logo" src="{{ asset('/img/pic_logo.png') }}" alt="some" /></div>
-			<p class="fs-5 text-light-emphasis">Don’t be afraid to let go of your emotions</p>
-			<p class="fs-6 text-light-emphasis">You can also find us here</p>
-			<div class="pt-3 pb-3">
-				<img src="{{ asset('/img/fb.png') }}" alt="" />
-				<img src="{{ asset('/img/twit.png') }}" alt="" />
-				<img src="{{ asset('/img/instagram.png') }}" style="width: 48px; height: 48px" alt="" />
-			</div>
-		</div>
+		<div id="footer" class="container-fluid pt-5 text-center ">
+					<div class="pb-5"><img id="pic_logo" src="{{asset('/img/pic_logo.png')}}" alt="some"></div>
+					<p class="fs-5 ">
+						Don’t be afraid to let go of your emotions
+					</p>
+					<p class="fs-6 text-light-emphasis">
+						You can also find us here
+					</p>
+					<div class="pb-3">
+						<img src="{{asset('/img/fb.png')}}" alt="">
+						<img src="{{asset('/img/twit.png')}}" alt="">
+						<img src="{{asset('/img/instagram.png')}}" style="width: 48px; height: 48px;"  alt="">
+
+						<p class="mb-4 mt-4">
+							© 2023 Uplift, Inc. All Rights Reserved
+						</p>
+					</div>
+					
+			</div>   
+
+		
 	</body>
 </html>
